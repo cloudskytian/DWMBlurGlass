@@ -195,9 +195,8 @@ namespace MDWMBlurGlass
 		extern const ULONG buildNumber;
 		extern const ULONG minorVersion;
 		extern const ULONG majorVersion;
-		extern const NT_PRODUCT_TYPE productType;
+		extern const ULONG ubrNumber;
 
-		auto constexpr w10_2004 = 19041;
 		auto constexpr w10_20h2 = 19042;
 		auto constexpr w10_21h1 = 19043;
 		auto constexpr w10_21h2 = 19044;

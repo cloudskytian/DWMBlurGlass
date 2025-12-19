@@ -168,6 +168,7 @@ namespace DWMBlurGlassGUI.Services
 
             Config.BlurMethod = (BlurMethod)ReadInt("blurMethod", (int)BlurMethod.CustomBlur);
             Config.EffectType = (EffectType)ReadInt("effectType", (int)EffectType.Blur);
+            Config.BlurQuality = (BlurQuality)ReadInt("blurQuality", (int)BlurQuality.Speed);
 
             IsModified = false;
             ConfigReloaded?.Invoke(this, EventArgs.Empty);
@@ -223,6 +224,7 @@ namespace DWMBlurGlassGUI.Services
 
             WriteInt("blurMethod", (int)Config.BlurMethod);
             WriteInt("effectType", (int)Config.EffectType);
+            WriteInt("blurQuality", (int)Config.BlurQuality);
 
             IsModified = false;
         }

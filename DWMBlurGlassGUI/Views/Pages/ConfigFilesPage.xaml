@@ -14,6 +14,7 @@
         <ui:TextBlock 
             Text="{Binding Lang[config]}" 
             FontTypography="Title"
+            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
             Margin="0,0,0,15"/>
 
         <!-- Config Files Card -->

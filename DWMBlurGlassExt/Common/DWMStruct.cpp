@@ -220,7 +220,7 @@ namespace MDWMBlurGlassExt::DWM
 		{
 			darkMode = (reinterpret_cast<BYTE const*>(this)[669] & 4) != 0;
 		}
-		else if (os::buildNumber < os::w11_25h2)
+		else if (os::buildNumber < os::w11_25h2 && os::ubrNumber < 7171)
 		{
 			darkMode = (reinterpret_cast<BYTE const*>(this)[677] & 4) != 0; // ok with build 26020
 		}
@@ -242,7 +242,7 @@ namespace MDWMBlurGlassExt::DWM
 		{
 			attribute = *reinterpret_cast<const DWORD*>(reinterpret_cast<BYTE const*>(this) + 664);
 		}
-		else if (os::buildNumber < os::w11_25h2)
+		else if (os::buildNumber < os::w11_25h2 && os::ubrNumber < 7171)
 		{
 			attribute = *reinterpret_cast<const DWORD*>(reinterpret_cast<BYTE const*>(this) + 672); // ok with build 26020
 		}

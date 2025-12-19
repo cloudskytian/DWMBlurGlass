@@ -10,7 +10,17 @@
                 <ui:ThemesDictionary />
                 <ui:ControlsDictionary/>
             </ResourceDictionary.MergedDictionaries>
-            
+
+            <Style TargetType="{x:Type ui:TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+            <Style TargetType="{x:Type ui:SymbolIcon}">
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+
             <!-- 覆盖导航栏分隔线样式，改为实线 -->
             <SolidColorBrush x:Key="LeftNavigationViewSeparatorBrush" Color="{DynamicResource DividerStrokeColorDefault}" />
         </ResourceDictionary>

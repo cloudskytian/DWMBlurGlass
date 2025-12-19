@@ -19,6 +19,12 @@ namespace DWMBlurGlassGUI.Models
         Mica
     }
 
+    public enum BlurQuality
+    {
+        Speed = 0,
+        Quality = 1
+    }
+
     public partial class AppConfig : ObservableObject
     {
         [ObservableProperty]
@@ -148,5 +154,8 @@ namespace DWMBlurGlassGUI.Models
 
         [ObservableProperty]
         private EffectType _effectType = EffectType.Blur;
+
+        [ObservableProperty]
+        private BlurQuality _blurQuality = BlurQuality.Speed;
     }
 }

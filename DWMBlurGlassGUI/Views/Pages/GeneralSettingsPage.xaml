@@ -21,6 +21,7 @@
         <ui:TextBlock 
             Text="{Binding Lang[general]}" 
             FontTypography="Title"
+            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
             Margin="0,0,0,15"/>
 
         <!-- Status Card -->
@@ -37,7 +38,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <ui:SymbolIcon Symbol="Circle12" Foreground="{Binding IsInstalled, Converter={StaticResource BoolToStatusBrushConverter}}" Margin="0,0,8,0" FontSize="10"/>
-                    <TextBlock Text="{Binding Lang[status]}" VerticalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="{Binding Lang[status]}" VerticalAlignment="Center" FontSize="12" />
                     <TextBlock Text="{Binding StatusText}" VerticalAlignment="Center" Foreground="{Binding IsInstalled, Converter={StaticResource BoolToStatusBrushConverter}}" Margin="5,0,0,0" FontSize="12"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -49,7 +50,7 @@
         </Border>
 
         <!-- Effects Settings Group -->
-        <ui:TextBlock Text="{Binding Lang[effectset]}" FontWeight="SemiBold" FontSize="16" Margin="0,8,0,8"/>
+        <ui:TextBlock Text="{Binding Lang[effectset]}" FontWeight="SemiBold" FontSize="16" Margin="0,8,0,8" Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
         <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" 
                 BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" 
                 BorderThickness="1" 
@@ -97,7 +98,7 @@
         </Border>
 
         <!-- Colors Settings Group -->
-        <ui:TextBlock Text="{Binding Lang[cmodelight]}" FontWeight="SemiBold" FontSize="16" Margin="0,8,0,8"/>
+        <ui:TextBlock Text="{Binding Lang[cmodelight]}" FontWeight="SemiBold" FontSize="16" Margin="0,8,0,8" Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
         <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" 
                 BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" 
                 BorderThickness="1" 
@@ -116,7 +117,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Lang[blendcolor]}" VerticalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="{Binding Lang[blendcolor]}" VerticalAlignment="Center" FontSize="12" />
                     <controls:ColorSettingItem Grid.Column="1"
                                                Color="{Binding ActiveTitleBarColor}"
                                                PickColorCommand="{Binding PickColorCommand}"
@@ -129,7 +130,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Lang[inactiveblendcolor]}" VerticalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="{Binding Lang[inactiveblendcolor]}" VerticalAlignment="Center" FontSize="12" />
                     <controls:ColorSettingItem Grid.Column="1"
                                                Color="{Binding InactiveTitleBarColor}"
                                                PickColorCommand="{Binding PickColorCommand}"
@@ -142,7 +143,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Lang[activecolor]}" VerticalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="{Binding Lang[activecolor]}" VerticalAlignment="Center" FontSize="12" />
                     <controls:ColorSettingItem Grid.Column="1"
                                                Color="{Binding ActiveTextColor}"
                                                PickColorCommand="{Binding PickColorCommand}"
@@ -156,7 +157,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Lang[inactivecolor]}" VerticalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="{Binding Lang[inactivecolor]}" VerticalAlignment="Center" FontSize="12" />
                     <controls:ColorSettingItem Grid.Column="1"
                                                Color="{Binding InactiveTextColor}"
                                                PickColorCommand="{Binding PickColorCommand}"
@@ -168,7 +169,7 @@
         </Border>
 
         <!-- Preview Group -->
-        <ui:TextBlock Text="{Binding Lang[preview]}" FontWeight="SemiBold" FontSize="16" Margin="0,8,0,8"/>
+        <ui:TextBlock Text="{Binding Lang[preview]}" FontWeight="SemiBold" FontSize="16" Margin="0,8,0,8" Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
         <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" 
                 BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" 
                 BorderThickness="1" 

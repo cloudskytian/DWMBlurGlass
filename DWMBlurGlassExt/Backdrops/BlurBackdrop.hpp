@@ -3,6 +3,7 @@
 #include "../Effects/GaussianBlurEffect.hpp"
 #include "../Effects/ColorSourceEffect.hpp"
 #include "../Effects/OpacityEffect.hpp"
+#include "../Common/CommonDef.h"
 
 namespace MDWMBlurGlassExt::BlurBackdrop
 {
@@ -27,7 +28,11 @@ namespace MDWMBlurGlassExt::BlurBackdrop
 		gaussianBlurEffect->SetName(L"Blur");
 		gaussianBlurEffect->SetBorderMode(D2D1_BORDER_MODE_HARD);
 		gaussianBlurEffect->SetBlurAmount(blurAmount);
-		gaussianBlurEffect->SetOptimizationMode(D2D1_GAUSSIANBLUR_OPTIMIZATION_SPEED);
+		gaussianBlurEffect->SetOptimizationMode(
+			CommonDef::g_configData.blurQuality == blurQuality::Speed ? 
+			D2D1_GAUSSIANBLUR_OPTIMIZATION_SPEED : 
+			D2D1_GAUSSIANBLUR_OPTIMIZATION_QUALITY
+		);
 		gaussianBlurEffect->SetInput(wuc::CompositionEffectSourceParameter{ L"Backdrop" });
 		if (static_cast<float>(tintColor.A) * tintOpacity == 0.f)
 		{

@@ -168,9 +168,14 @@ namespace MDWMBlurGlassExt::CustomButton
 		{
 			if (auto button = GetButtonPtr(index))
 			{
+				if (isToolWindow)
+				{
+					width = height = -1;
+				}
 				g_cbuttonList[This].buttonList[button] = std::make_pair(index, RECT{ x, 0, width, height });
 
-				if (!g_configData.oldBtnHeight) return true;
+				// 不要修改工具栏窗口的按钮 它应该是固定大小和偏移
+				if (!g_configData.oldBtnHeight || isToolWindow) return true;
 
 				if (os::buildNumber < 22000 || os::buildNumber >= 26100)
 				{
@@ -328,6 +333,12 @@ namespace MDWMBlurGlassExt::CustomButton
 				return g_funCButton_UpdateLayout.call_org(This);
 
 			auto& data = iter->second.buttonList[This].second;
+
+			// 如果宽高为 -1 则表示使用默认尺寸(工具窗口按钮) 不进行修改
+			if ((data.right == -1 && data.bottom == -1))
+			{
+				return g_funCButton_UpdateLayout.call_org(This);
+			}
 			size->cx = data.right;
 			size->cy = data.bottom;
 
@@ -371,7 +382,7 @@ namespace MDWMBlurGlassExt::CustomButton
 
 			//OutputDebugStringW((L"state:" + std::to_wstring(state) + L"\n").c_str());
 			SIZE size = { data.second.right, data.second.bottom };
-			if (!g_configData.oldBtnHeight)
+			if (!g_configData.oldBtnHeight || (size.cx == -1 && size.cy == -1))
 				size = *This->GetSize();
 			backdrop->Update(data.first, *This->GetPoint(), size, scale, state == 2 || state == 1);
 		}

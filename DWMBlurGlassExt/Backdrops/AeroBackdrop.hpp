@@ -6,6 +6,7 @@
 #include "../Effects/SaturationEffect.hpp"
 #include "../Effects/TintEffect.hpp"
 #include "../Effects/BlendEffect.hpp"
+#include "../Common/CommonDef.h"
 
 namespace MDWMBlurGlassExt::AeroBackdrop
 {
@@ -32,7 +33,11 @@ namespace MDWMBlurGlassExt::AeroBackdrop
 				gaussianBlurEffect->SetName(L"Blur");
 				gaussianBlurEffect->SetBorderMode(D2D1_BORDER_MODE_HARD);
 				gaussianBlurEffect->SetBlurAmount(blurAmount);
-				gaussianBlurEffect->SetOptimizationMode(D2D1_GAUSSIANBLUR_OPTIMIZATION_SPEED);
+				gaussianBlurEffect->SetOptimizationMode(
+					CommonDef::g_configData.blurQuality == blurQuality::Speed ? 
+					D2D1_GAUSSIANBLUR_OPTIMIZATION_SPEED : 
+					D2D1_GAUSSIANBLUR_OPTIMIZATION_QUALITY
+				);
 				gaussianBlurEffect->SetInput(wuc::CompositionEffectSourceParameter{ L"Backdrop" });
 
 				auto blurredBackdropBrush{ compositor.CreateEffectFactory(*gaussianBlurEffect).CreateBrush() };

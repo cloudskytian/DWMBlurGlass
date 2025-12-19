@@ -53,6 +53,9 @@
 	<colorBalance>ColorBalance:</colorBalance>
 	<blurBalance>BlurBalance:</blurBalance>
 	<afterglowBalance>AfterglowBalance:</afterglowBalance>
+	<blurQuality>Blur Rendering Quality:</blurQuality>
+	<blurQualitySpeed>Speed Priority</blurQualitySpeed>
+	<blurQualityQuality>Quality Priority</blurQualityQuality>
 	<miscsettings>Misc:</miscsettings>
 	<enablecrossfade>Enable crossfade animation effect</enablecrossfade>
 	<crossfadeTime>Animation duration:</crossfadeTime>

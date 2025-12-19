@@ -40,6 +40,12 @@ namespace MDWMBlurGlass
 		Mica
 	};
 
+	enum class blurQuality
+	{
+		Speed = 0,
+		Quality = 1
+	};
+
 	struct ConfigData
 	{
 		bool applyglobal = false;
@@ -66,12 +72,14 @@ namespace MDWMBlurGlass
 
 		//Options without GUI
 		int extendRound = 10;
+		int clipRound = 0;
 		int titlebtnOffsetX = -1;
+		//
+
 		int customCloseBtnW = 49;
 		int customMaxBtnW = 27;
 		int customMinBtnW = 29;
 		int customBtnFrameH = 20;
-		//
 
 		float blurAmount = 20.f;
 		float customBlurAmount = 20.f;
@@ -99,6 +107,7 @@ namespace MDWMBlurGlass
 
 		blurMethod blurmethod = blurMethod::CustomBlur;
 		effectType effectType = effectType::Blur;
+		blurQuality blurQuality = blurQuality::Speed;
 
 		std::wstring customAeroTexturePath;
 

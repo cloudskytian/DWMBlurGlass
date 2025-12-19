@@ -8,6 +8,6 @@ namespace DWMBlurGlassGUI.ViewModels.Pages
         public LanguageService Lang => LanguageService.Instance;
 
         [ObservableProperty]
-        private string _appVersion = "2.3.2 Beta 2";
+        private string _appVersion = "2.3.2 Beta 3";
     }
 }

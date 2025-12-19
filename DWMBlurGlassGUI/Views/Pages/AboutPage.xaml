@@ -14,25 +14,30 @@
         <ui:TextBlock 
             Text="{Binding Lang[about]}" 
             FontTypography="Title"
+            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
             Margin="0,0,0,15"/>
             
         <StackPanel>
             <ui:TextBlock 
                 Text="DWMBlurGlass"
                 FontTypography="Subtitle"
+                Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                 Margin="0,0,0,8"/>
             
             <ui:TextBlock 
+                Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                 Margin="0,0,0,8">
                 <Run Text="Version: "/>
                 <Run Text="{Binding AppVersion, Mode=OneWay}"/>
             </ui:TextBlock>
             
             <ui:TextBlock 
+                Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                 Text="Author: MapleSpe、ALTaleX"
                 Margin="0,0,0,8"/>
             
             <ui:TextBlock 
+                Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                 Margin="0,0,0,8">
                 <Run Text="{Binding Lang[curlang], Mode=OneWay}"/>
                 <Run> </Run>
@@ -40,6 +45,7 @@
             </ui:TextBlock>
             
             <ui:TextBlock 
+                Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                 Text="{Binding Lang[aboutinfo]}"
                 TextWrapping="Wrap"
                 Appearance="Secondary"

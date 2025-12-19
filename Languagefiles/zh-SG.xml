@@ -53,6 +53,9 @@
 	<colorBalance>色彩平衡:</colorBalance>
 	<blurBalance>亮度平衡:</blurBalance>
 	<afterglowBalance>饱和度平衡:</afterglowBalance>
+	<blurQuality>模糊渲染质量:</blurQuality>
+	<blurQualitySpeed>速度优先</blurQualitySpeed>
+	<blurQualityQuality>质量优先</blurQualityQuality>
 	<miscsettings>杂项设置:</miscsettings>
 	<enablecrossfade>启用标题栏混合色交叉淡出动画效果</enablecrossfade>
 	<crossfadeTime>动画时长:</crossfadeTime>

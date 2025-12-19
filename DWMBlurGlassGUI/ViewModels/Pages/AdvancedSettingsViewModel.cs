@@ -57,6 +57,8 @@ namespace DWMBlurGlassGUI.ViewModels.Pages
             CustomMinBtnW = config.CustomMinBtnW;
             CustomBtnFrameH = config.CustomBtnFrameH;
             TitleBtnSizePresetIndex = config.TitleBtnSizePreset;
+            IsBlurQualitySpeed = config.BlurQuality == BlurQuality.Speed;
+            IsBlurQualityQuality = config.BlurQuality == BlurQuality.Quality;
         }
 
         [ObservableProperty]
@@ -129,6 +131,31 @@ namespace DWMBlurGlassGUI.ViewModels.Pages
             OnPropertyChanged(nameof(BlurRadiusVisibility));
             OnPropertyChanged(nameof(AeroSettingsVisibility));
             OnPropertyChanged(nameof(MaterialOpacityVisibility));
+        }
+
+        // Blur Quality Settings
+        [ObservableProperty]
+        private bool _isBlurQualitySpeed = true;
+
+        partial void OnIsBlurQualitySpeedChanged(bool value)
+        {
+            if (value)
+            {
+                _configManager.Config.BlurQuality = BlurQuality.Speed;
+                IsBlurQualityQuality = false;
+            }
+        }
+
+        [ObservableProperty]
+        private bool _isBlurQualityQuality = false;
+
+        partial void OnIsBlurQualityQualityChanged(bool value)
+        {
+            if (value)
+            {
+                _configManager.Config.BlurQuality = BlurQuality.Quality;
+                IsBlurQualitySpeed = false;
+            }
         }
 
         // Misc Settings

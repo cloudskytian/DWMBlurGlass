@@ -206,6 +206,11 @@ namespace MDWMBlurGlass
 				cfgData.effectType = effectType::Acrylic;
 		});
 
+		GetCfgValueInternal(L"blurQuality",
+		{
+			cfgData.blurQuality = (MDWMBlurGlass::blurQuality)std::clamp(_wtoi(value.data()), 0, 1);
+		});
+
 		GetCfgValueInternal(L"crossfadeTime",
 		{
 			cfgData.crossfadeTime = (UINT)std::clamp(_wtoi(value.data()), 0, 500);

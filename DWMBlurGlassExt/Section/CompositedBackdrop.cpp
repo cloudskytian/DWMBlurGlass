@@ -129,6 +129,11 @@ namespace MDWMBlurGlassExt
 		{
 			clipApplied = true;
 		}
+		// If clipRound is configured, always apply clipping
+		if (g_configData.clipRound > 0)
+		{
+			clipApplied = true;
+		}
 		if (m_clipApplied2 != clipApplied)
 		{
 			m_rootVisual.Clip(clipApplied ? m_dcompDevice.as<wuc::Compositor>().CreateGeometricClip(m_pathGeometry) : nullptr);
@@ -149,7 +154,43 @@ namespace MDWMBlurGlassExt
 				m_compositedRgn.get()
 			)
 		};
-		m_pathGeometry.Path(wuc::CompositionPath{ canvasGeometry.as<wg::IGeometrySource2D>() });
+
+		// Apply rounded rectangle clipping
+		if (g_configData.clipRound > 0)
+		{
+			winrt::com_ptr<ID2D1RoundedRectangleGeometry> roundedRectGeometry{ nullptr };
+			D2D1_ROUNDED_RECT roundedRect = D2D1::RoundedRect(
+				D2D1::RectF(0.f, 0.f, static_cast<float>(wil::rect_width(regionBox)), static_cast<float>(wil::rect_height(regionBox))),
+				static_cast<float>(g_configData.clipRound),
+				static_cast<float>(g_configData.clipRound)
+			);
+			THROW_IF_FAILED(factory->CreateRoundedRectangleGeometry(roundedRect, roundedRectGeometry.put()));
+
+			winrt::com_ptr<ID2D1PathGeometry> clippedGeometry{ nullptr };
+			THROW_IF_FAILED(factory->CreatePathGeometry(clippedGeometry.put()));
+			winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
+			THROW_IF_FAILED(clippedGeometry->Open(sink.put()));
+
+			winrt::com_ptr<ID2D1Geometry> baseGeometry{ nullptr };
+			canvasGeometry->GetGeometry(baseGeometry.put());
+			THROW_IF_FAILED(
+				baseGeometry->CombineWithGeometry(
+					roundedRectGeometry.get(),
+					D2D1_COMBINE_MODE_INTERSECT,
+					nullptr,
+					sink.get()
+				)
+			);
+			THROW_IF_FAILED(sink->Close());
+
+			auto clippedCanvasGeometry{ winrt::make_self<Geometry::CanvasGeometry>() };
+			clippedCanvasGeometry->SetGeometry(clippedGeometry.get());
+			m_pathGeometry.Path(wuc::CompositionPath{ clippedCanvasGeometry.as<wg::IGeometrySource2D>() });
+		}
+		else
+		{
+			m_pathGeometry.Path(wuc::CompositionPath{ canvasGeometry.as<wg::IGeometrySource2D>() });
+		}
 	}
 
 	void CCompositedBackdropVisual::OnBackdropBrushUpdated()

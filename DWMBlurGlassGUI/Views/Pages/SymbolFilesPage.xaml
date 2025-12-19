@@ -14,6 +14,7 @@
         <ui:TextBlock 
             Text="{Binding Lang[symbol]}" 
             FontTypography="Title"
+            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
             Margin="0,0,0,15"/>
 
         <!-- Symbol Status Card -->
