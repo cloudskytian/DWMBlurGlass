@@ -33,7 +33,7 @@
 	<extendborder>Estendi gli effetti ai bordi (win10)</extendborder>
 	<reflection>Abilita l'effetto riflesso Aero (win10)</reflection>
 	<reflectiontip>(Metodo di sfocatura precedente solo per Windows 10)</reflectiontip>
-	<oldBtnSize>Ripristina le dimensioni del pulsante della barra del titolo in stile Win7</oldBtnSize>
+	<adjustTitleBtnSize>Regola la dimensione del pulsante della barra del titolo in:</adjustTitleBtnSize>
 	<titlebtnGlow>Abilita l'illuminazione del pulsante della barra del titolo in stile Win7</titlebtnGlow>
 	<cmodelight>Colori Modalità Chiara</cmodelight>
 	<cmodedark>Colori Modalità Scura</cmodedark>
@@ -53,11 +53,23 @@
 	<colorBalance>Bilanciamento del colore:</colorBalance>
 	<blurBalance>Bilanciamento della sfocatura:</blurBalance>
 	<afterglowBalance>Bilanciamento del bagliore residuo:</afterglowBalance>
+	<blurQuality>Qualità del rendering della sfocatura:</blurQuality>
+	<blurQualitySpeed>Priorità di velocità</blurQualitySpeed>
+	<blurQualityQuality>Priorità di qualità</blurQualityQuality>
 	<miscsettings>Varie:</miscsettings>
 	<enablecrossfade>Abilita l'effetto di animazione dissolvenza incrociata</enablecrossfade>
 	<crossfadeTime>Durata Animazione:</crossfadeTime>
 	<useaccentcolor>Utilizza il colore principale per sovrascrivere le impostazioni colore RGB</useaccentcolor>
 	<glassIntensity>Opacità texture riflessione Aero:</glassIntensity>
+	<customAeroTexture>Custom Aero reflection texture:</customAeroTexture>
+	<browse>Browse</browse>
+	<texturepath_error>Il file selezionato non può essere caricato a causa di restrizioni di autorizzazione. Il file non deve trovarsi nella cartella utente (User) o nelle sue sottodirectory.</texturepath_error>
+	<customTitleBtnSize>Dimensione personalizzata del pulsante della barra del titolo:</customTitleBtnSize>
+	<custom>Personalizzato</custom>
+	<closeBtnWidth>Larghezza del pulsante Chiudi:</closeBtnWidth>
+	<maxBtnWidth>Larghezza del pulsante Ingrandisci:</maxBtnWidth>
+	<minBtnWidth>Larghezza del pulsante Riduci a icona:</minBtnWidth>
+	<btnFrameHeight>Altezza cornice pulsante:</btnFrameHeight>
 	<overrideAccent>Sostituisci l'effetto AccentBlur</overrideAccent>
 	<scaleOptimizer>Abilita l'ottimizzazione del rendering della sfocatura</scaleOptimizer>
 	<disableOnBattery>Disattiva gli effetti quando in modalità di risparmio energetico</disableOnBattery>
@@ -69,7 +81,12 @@
 	<symstatus1>Valido</symstatus1>
 	<symdowning>Download in corso...</symdowning>
 	<symdownfail>Download fallito! Impossibile scaricare il file da "msdl.microsoft.com".</symdownfail>
+	<symdowntitle>Scarica i file dei simboli</symdowntitle>
+	<symdowninfo>Scaricando i file dei simboli dai server Microsoft...</symdowninfo>
+	<cancel>Annulla</cancel>
 	<syminvalid>Il file dei simboli non è valido! Vai alla pagina "Simboli" del programma DWMBlurGlass per scaricare un nuovo file di simboli!</syminvalid>
+	<autodownloadsymbol>Download automatico dei file dei simboli</autodownloadsymbol>
+	<autodownloadsymboltip>Se "Download automatico dei file dei simboli" è abilitato, i file simboli verranno scaricati quando DWMBlurGlass si avvia e rileva file dei simboli non validi.\n\nNota: Tuttavia, non consigliamo di aggiornare frequentemente il sistema, poiché ciò potrebbe causare la frequente invalidità del software.</autodownloadsymboltip>
 	<configfile>File di configurazione</configfile>
 	<import>Importa</import>
 	<export>Esporta</export>
