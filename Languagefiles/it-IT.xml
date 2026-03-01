@@ -61,11 +61,11 @@
 	<crossfadeTime>Durata Animazione:</crossfadeTime>
 	<useaccentcolor>Utilizza il colore principale per sovrascrivere le impostazioni colore RGB</useaccentcolor>
 	<glassIntensity>Opacità texture riflessione Aero:</glassIntensity>
-	<customAeroTexture>Custom Aero reflection texture:</customAeroTexture>
-	<browse>Browse</browse>
+	<customAeroTexture>Texture riflesso Aero personalizzata:</customAeroTexture>
+	<browse>Sfoglia</browse>
 	<texturepath_error>Il file selezionato non può essere caricato a causa di restrizioni di autorizzazione. Il file non deve trovarsi nella cartella utente (User) o nelle sue sottodirectory.</texturepath_error>
 	<customTitleBtnSize>Dimensione personalizzata del pulsante della barra del titolo:</customTitleBtnSize>
-	<custom>Personalizzato</custom>
+	<custom>Personalizza</custom>
 	<closeBtnWidth>Larghezza del pulsante Chiudi:</closeBtnWidth>
 	<maxBtnWidth>Larghezza del pulsante Ingrandisci:</maxBtnWidth>
 	<minBtnWidth>Larghezza del pulsante Riduci a icona:</minBtnWidth>
