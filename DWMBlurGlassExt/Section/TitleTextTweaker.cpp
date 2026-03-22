@@ -19,6 +19,7 @@
 #include "CommonDef.h"
 #include "wil.h"
 #include <shellscalingapi.h>
+#include "../Helper/Helper.h" // For DrawTextWithGlow
 #pragma comment(lib, "shcore.lib")
 
 namespace MDWMBlurGlassExt::TitleTextTweaker
@@ -173,34 +174,53 @@ namespace MDWMBlurGlassExt::TitleTextTweaker
 		lprc->right -= g_textGlowSize;
 		lprc->bottom -= g_textGlowSize;
 
-		DTTOPTS options
-		{
-			sizeof(DTTOPTS),
-			DTT_TEXTCOLOR | DTT_COMPOSITED | DTT_CALLBACK | DTT_GLOWSIZE,
-			GetTextColor(hdc),
-			0,
-			0,
-			0,
-			{},
-			0,
-			0,
-			0,
-			0,
-			FALSE,
+		// Get the current text color and calculate the brightness using YIQ formula
+		COLORREF textColor = GetTextColor(hdc);
+		int luminance = (GetRValue(textColor) * 299 + GetGValue(textColor) * 587 + GetBValue(textColor) * 114) / 1000;
+
+		UINT crGlow = (luminance > 128) ? RGB(128, 128, 128) : RGB(255, 255, 255);
+		UINT nGlowIntensity = 255;
+
+		// Prioritize calling uxtheme's inner function number 126 to render realistic glow.
+		HRESULT hr = MDWMBlurGlassExt::DrawTextWithGlow(
+			hdc,
+			lpchText,
+			cchText,
+			lprc,
+			format,
+			textColor,
+			crGlow,
 			g_textGlowSize,
+			nGlowIntensity,
+			TRUE,
 			drawTextCallback,
 			(LPARAM)&result
-		};
-		wil::unique_htheme hTheme{ OpenThemeData(nullptr, L"Composited::Window") };
+		);
 
-		if (hTheme)
+		// If the extraction of the undocumented function fails, revert to the original DrawThemeTextEx as a fallback rendering method.
+		if (FAILED(hr))
 		{
-			LOG_IF_FAILED(DrawThemeTextEx(hTheme.get(), hdc, 0, 0, lpchText, cchText, format, lprc, &options));
-		}
-		else
-		{
-			LOG_HR_IF_NULL(E_FAIL, hTheme);
-			result = g_funDrawTextW(hdc, lpchText, cchText, lprc, format);
+			DTTOPTS options
+			{
+				sizeof(DTTOPTS),
+				DTT_TEXTCOLOR | DTT_COMPOSITED | DTT_CALLBACK | DTT_GLOWSIZE,
+				textColor,
+				0, 0, 0, {}, 0, 0, 0, 0, FALSE,
+				g_textGlowSize,
+				drawTextCallback,
+				(LPARAM)&result
+			};
+			wil::unique_htheme hTheme{ OpenThemeData(nullptr, L"Composited::Window") };
+
+			if (hTheme)
+			{
+				LOG_IF_FAILED(DrawThemeTextEx(hTheme.get(), hdc, 0, 0, lpchText, cchText, format, lprc, &options));
+			}
+			else
+			{
+				LOG_HR_IF_NULL(E_FAIL, hTheme);
+				result = g_funDrawTextW(hdc, lpchText, cchText, lprc, format);
+			}
 		}
 
 		lprc->left -= g_textGlowSize;
@@ -210,6 +230,7 @@ namespace MDWMBlurGlassExt::TitleTextTweaker
 
 		return result;
 	}
+
 
 	HRESULT MyCreateBitmapFromHBITMAP(IWICImagingFactory2* This, HBITMAP hBitmap, HPALETTE hPalette,
 		WICBitmapAlphaChannelOption options, IWICBitmap** ppIBitmap)

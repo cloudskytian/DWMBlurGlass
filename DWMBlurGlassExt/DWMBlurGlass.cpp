@@ -162,6 +162,17 @@ namespace MDWMBlurGlassExt
 		if(os::buildNumber < 22000)
 			WriteIAT(udwmModule, "gdi32.dll", { { "CreateRoundRectRgn", g_funCreateRoundRgn } });
 
+		// By using EnumWindows, all top-level windows are forced to trigger border recalculation (SWP_FRAMECHANGED), 
+		// ensuring that when a window is woken up (SC_RESTORE), DWM is forced to completely rebuild visual nodes 
+		// in the non-working area, preventing remnants and misalignments.
+		EnumWindows([](HWND hwnd, LPARAM) -> BOOL {
+			if (IsWindowVisible(hwnd) || IsIconic(hwnd)) {
+				SetWindowPos(hwnd, nullptr, 0, 0, 0, 0,
+					SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED | SWP_NOACTIVATE);
+			}
+			return TRUE;
+			}, 0);
+
 		if (g_oldExceptionFilter)
 		{
 			SetUnhandledExceptionFilter(g_oldExceptionFilter);
